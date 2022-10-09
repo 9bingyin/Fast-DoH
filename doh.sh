@@ -92,21 +92,29 @@ dnspod(){
 aliyun(){
 	main
 	sed -i 's/1.12.12.12/223.5.5.5/g' /etc/systemd/system/dnsproxy.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
 }
 
 cloudflare(){
 	main
 	sed -i 's/1.12.12.12/1.1.1.1/g' /etc/systemd/system/dnsproxy.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
 }
 
 google(){
 	main
 	sed -i 's/1.12.12.12/8.8.8.8/g' /etc/systemd/system/dnsproxy.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
 }
 
 dnssb(){
 	main
 	sed -i 's/1.12.12.12/185.222.222.222/g' /etc/systemd/system/dnsproxy.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
 }
 
 
