@@ -15,3 +15,5 @@
 [dnsproxy](https://github.com/AdguardTeam/dnsproxy)
 
 [changedns.sh](https://github.com/ernisn/changedns.sh)
+
+[DNS.SB 的教程](https://dns.sb/guide/doh/linux/)
