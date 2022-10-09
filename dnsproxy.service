@@ -6,9 +6,9 @@ Wants=
 Requires=
 
 [Service]
-ExecStart=dnsproxy -l 127.0.0.1 -p 53 -u https://1.12.12.12/dns-query
+ExecStart=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://1.12.12.12/dns-query
 ExecStop=
-ExecReload=dnsproxy -l 127.0.0.1 -p 53 -u https://1.12.12.12/dns-query
+ExecReload=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://1.12.12.12/dns-query
 Type=simple
 
 [Install]
