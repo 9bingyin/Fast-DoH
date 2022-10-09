@@ -46,7 +46,7 @@ install(){
         yum install epel-release -y
         yum install -y wget curl tar
         wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-amd64-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
-        tar -xzvf /tmp/dnsproxy.tar.gz
+        tar -xzvf /tmp/dnsproxy.tar.gz -C /tmp/
         mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
 		rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
@@ -59,7 +59,7 @@ install(){
         apt-get -y update
         apt-get install -y wget curl tar
         wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-amd64-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
-        tar -xzvf /tmp/dnsproxy.tar.gz
+        tar -xzvf /tmp/dnsproxy.tar.gz -C /tmp/
         mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
 		rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
