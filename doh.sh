@@ -44,11 +44,12 @@ install(){
     echo -e "${Green}即将安装...${Font}"
     if [ "${OS}" == 'CentOS' ];then
         yum install epel-release -y
-        yum install -y wget curl echo tar
+        yum install -y wget curl tar
         wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-amd64-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
         tar -xzvf /tmp/dnsproxy.tar.gz
-        mv /tmp/dnsproxy /usr/bin/dnsproxy
+        mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
+		rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
         wget -N -P /etc/systemd/system https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/dnsproxy.service
         systemctl daemon-reload
         systemctl restart dnsproxy
@@ -56,11 +57,12 @@ install(){
         echo -e "${Green}done!${Font}"
     else
         apt-get -y update
-        apt-get install -y wget curl echo tar
+        apt-get install -y wget curl tar
         wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-amd64-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
         tar -xzvf /tmp/dnsproxy.tar.gz
-        mv /tmp/dnsproxy /usr/bin/dnsproxy
+        mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
+		rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
         wget -N -P /etc/systemd/system https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/dnsproxy.service
         systemctl daemon-reload
         systemctl restart dnsproxy
