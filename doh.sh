@@ -49,7 +49,7 @@ install(){
         tar -xzvf /tmp/dnsproxy.tar.gz -C /tmp/
         mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
-		rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
+        rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
         wget -N -P /etc/systemd/system https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/dnsproxy.service
         systemctl daemon-reload
         systemctl restart dnsproxy
@@ -62,7 +62,7 @@ install(){
         tar -xzvf /tmp/dnsproxy.tar.gz -C /tmp/
         mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
-		rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
+        rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
         wget -N -P /etc/systemd/system https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/dnsproxy.service
         systemctl daemon-reload
         systemctl restart dnsproxy
@@ -86,33 +86,33 @@ main(){
 }
 
 dnspod(){
-	main
+    main
 }
 
 aliyun(){
-	main
-	sed -i 's/1.12.12.12/223.5.5.5/g' /etc/systemd/system/dnsproxy.service
+    main
+    sed -i 's/1.12.12.12/223.5.5.5/g' /etc/systemd/system/dnsproxy.service
     systemctl daemon-reload
     systemctl restart dnsproxy
 }
 
 cloudflare(){
-	main
-	sed -i 's/1.12.12.12/1.1.1.1/g' /etc/systemd/system/dnsproxy.service
+    main
+    sed -i 's/1.12.12.12/1.1.1.1/g' /etc/systemd/system/dnsproxy.service
     systemctl daemon-reload
     systemctl restart dnsproxy
 }
 
 google(){
-	main
-	sed -i 's/1.12.12.12/8.8.8.8/g' /etc/systemd/system/dnsproxy.service
+    main
+    sed -i 's/1.12.12.12/8.8.8.8/g' /etc/systemd/system/dnsproxy.service
     systemctl daemon-reload
     systemctl restart dnsproxy
 }
 
 dnssb(){
-	main
-	sed -i 's/1.12.12.12/185.222.222.222/g' /etc/systemd/system/dnsproxy.service
+    main
+    sed -i 's/1.12.12.12/185.222.222.222/g' /etc/systemd/system/dnsproxy.service
     systemctl daemon-reload
     systemctl restart dnsproxy
 }
