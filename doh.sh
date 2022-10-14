@@ -72,9 +72,9 @@ install(){
 }
 
 tips(){
-	echo -e "${Blue}请将 /etc/resolv.conf 改为 nameserver 127.0.0.1${Font}"
-	echo -e "${Blue}可使用 bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/lockdns.sh") 锁定DNS${Font}"
-	echo -e "${Blue}如遇53端口占用请查看 https://www.moeelf.com/archives/270.html 或卸载其他 DNS 程序${Font}"
+    echo -e "${Blue}请将 /etc/resolv.conf 改为 nameserver 127.0.0.1${Font}"
+    echo -e "${Blue}可使用 bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/lockdns.sh") 锁定DNS${Font}"
+    echo -e "${Blue}如遇53端口占用请查看 https://www.moeelf.com/archives/270.html 或卸载其他 DNS 程序${Font}"
 }
 
 main(){
