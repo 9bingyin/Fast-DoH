@@ -8,7 +8,9 @@
 
 ## 使用
 
-`bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/main/doh.sh")`
+```
+bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/main/doh.sh")
+```
 
 ## 鸣谢
 
