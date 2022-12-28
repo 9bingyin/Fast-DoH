@@ -62,9 +62,9 @@ install(){
         yum install -y wget curl tar
         wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-${ARCHV}-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
         tar -xzvf /tmp/dnsproxy.tar.gz -C /tmp/
-        mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
+        mv /tmp/linux-${ARCHV}/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
-        rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
+        rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-${ARCHV}/
         wget -N -P /etc/systemd/system https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/dnsproxy.service
         systemctl daemon-reload
         systemctl restart dnsproxy
@@ -75,9 +75,9 @@ install(){
         apt-get install -y wget curl tar
         wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-${ARCHV}-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
         tar -xzvf /tmp/dnsproxy.tar.gz -C /tmp/
-        mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
+        mv /tmp/linux-${ARCHV}/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
-        rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-amd64/
+        rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-${ARCHV}/
         wget -N -P /etc/systemd/system https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/dnsproxy.service
         systemctl daemon-reload
         systemctl restart dnsproxy
