@@ -1,0 +1,15 @@
+[Unit]
+Description=DNS Proxy Service
+Documentation=DNS Proxy Service
+After=network.target
+Wants=
+Requires=
+
+[Service]
+ExecStart=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://8.8.8.8/dns-query -u https://8.8.4.4/dns-query
+ExecStop=
+ExecReload=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://8.8.8.8/dns-query -u https://8.8.4.4/dns-query
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=DNS Proxy Service
+Documentation=DNS Proxy Service
+After=network.target
+Wants=
+Requires=
+
+[Service]
+ExecStart=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://cn-east.lele233.com/dns-query -b 119.29.29.29 -b 223.5.5.5
+ExecStop=
+ExecReload=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://cn-east.lele233.com/dns-query -b 119.29.29.29 -b 223.5.5.5
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
