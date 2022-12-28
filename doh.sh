@@ -33,6 +33,21 @@ checkos(){
     fi
 }
 
+get_arch(){
+get_arch=`arch`
+    if [[ $get_arch =~ "x86_64" ]];then
+       ARCHV=amd64
+    elif [[ $get_arch =~ "aarch64" ]];then
+       ARCHV=arm64
+    elif [[ $get_arch =~ "mips64" ]];then
+       echo "mips64 is not supported"
+       exit 1
+    else
+       echo "Unknown Architecture!!"
+       exit 1
+    fi
+}
+
 disable_selinux(){
     if [ -s /etc/selinux/config ] && grep 'SELINUX=enforcing' /etc/selinux/config; then
         sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
@@ -45,7 +60,7 @@ install(){
     if [ "${OS}" == 'CentOS' ];then
         yum install epel-release -y
         yum install -y wget curl tar
-        wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-amd64-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
+        wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-${ARCHV}-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
         tar -xzvf /tmp/dnsproxy.tar.gz -C /tmp/
         mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
@@ -58,7 +73,7 @@ install(){
     else
         apt-get -y update
         apt-get install -y wget curl tar
-        wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-amd64-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
+        wget "https://github.com/AdguardTeam/dnsproxy/releases/download/${VERSION}/dnsproxy-linux-${ARCHV}-${VERSION}.tar.gz" -O /tmp/dnsproxy.tar.gz
         tar -xzvf /tmp/dnsproxy.tar.gz -C /tmp/
         mv /tmp/linux-amd64/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
@@ -80,6 +95,7 @@ tips(){
 main(){
     rootness
     checkos
+    get_arch
     disable_selinux
     install
     tips
