@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/dnsproxy/releases/latest | grep tag_name | cut -d '"' -f 4) && echo "Latest AdguardTeam dnsproxy version is $VERSION"
 Green="\033[32m"
 Font="\033[0m"
 Blue="\033[33m"
+
+VERSION=$(curl -s https://api.github.com/repos/AdguardTeam/dnsproxy/releases/latest | grep tag_name | cut -d '"' -f 4)
 
 rootness(){
     if [[ $EUID -ne 0 ]]; then
@@ -174,7 +175,7 @@ Fast DoH Setup Script
  7. IQDNS (CN-East)
  8. IQDNS (CN-South)
 ------------------------------" && echo
-read -e -p " 请输入数字 [1-5]:" num
+read -e -p " 请输入数字 [1-8]:" num
 case "$num" in
 	1)
 	dnspod
@@ -201,6 +202,6 @@ case "$num" in
 	iqdnssouth
 	;;
 	*)
-	echo "请输入正确数字 [1-5]"
+	echo "请输入正确数字 [1-8]"
 	;;
 esac
