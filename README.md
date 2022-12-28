@@ -19,3 +19,7 @@ bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/main/doh.s
 [changedns.sh](https://github.com/ernisn/changedns.sh)
 
 [DNS.SB 的教程](https://dns.sb/guide/doh/linux/)
+
+## Tips
+
+如遇无法使用UDP的环境，可使用`sed -i "1iuse-vc" /etc/resolv.conf`开启TCP解析
