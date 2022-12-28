@@ -65,11 +65,6 @@ install(){
         mv /tmp/linux-${ARCHV}/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
         rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-${ARCHV}/
-        wget -N -P /etc/systemd/system https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/dnsproxy.service
-        systemctl daemon-reload
-        systemctl restart dnsproxy
-        systemctl enable dnsproxy
-        echo -e "${Green}done!${Font}"
     else
         apt-get -y update
         apt-get install -y wget curl tar
@@ -78,15 +73,11 @@ install(){
         mv /tmp/linux-${ARCHV}/dnsproxy /usr/bin/dnsproxy
         chmod +x /usr/bin/dnsproxy
         rm -rf /tmp/dnsproxy.tar.gz /tmp/linux-${ARCHV}/
-        wget -N -P /etc/systemd/system https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/dnsproxy.service
-        systemctl daemon-reload
-        systemctl restart dnsproxy
-        systemctl enable dnsproxy
-        echo -e "${Green}done!${Font}"
     fi
 }
 
 tips(){
+    echo -e "${Green}done!${Font}"
     echo -e "${Blue}请将 /etc/resolv.conf 改为 nameserver 127.0.0.1${Font}"
     echo -e "${Blue}可使用 bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/lockdns.sh") 锁定DNS${Font}"
     echo -e "${Blue}如遇53端口占用请查看 https://www.moeelf.com/archives/270.html 或卸载其他 DNS 程序${Font}"
@@ -98,39 +89,77 @@ main(){
     get_arch
     disable_selinux
     install
-    tips
 }
 
 dnspod(){
     main
+	wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/dnspod.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
+	systemctl enable dnsproxy
 }
 
 aliyun(){
     main
-    sed -i 's/1.12.12.12/223.5.5.5/g' /etc/systemd/system/dnsproxy.service
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/aliyun.service
     systemctl daemon-reload
     systemctl restart dnsproxy
+	systemctl enable dnsproxy
+	tips
 }
 
 cloudflare(){
     main
-    sed -i 's/1.12.12.12/1.1.1.1/g' /etc/systemd/system/dnsproxy.service
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/cloudflare.service
     systemctl daemon-reload
     systemctl restart dnsproxy
+	systemctl enable dnsproxy
+	tips
 }
 
 google(){
     main
-    sed -i 's/1.12.12.12/8.8.8.8/g' /etc/systemd/system/dnsproxy.service
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/google.service
     systemctl daemon-reload
     systemctl restart dnsproxy
+	systemctl enable dnsproxy
+	tips
 }
 
 dnssb(){
     main
-    sed -i 's/1.12.12.12/185.222.222.222/g' /etc/systemd/system/dnsproxy.service
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/dnssb.service
     systemctl daemon-reload
     systemctl restart dnsproxy
+	systemctl enable dnsproxy
+	tips
+}
+
+nextdns(){
+    main
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/nextdns.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
+	systemctl enable dnsproxy
+    tips
+}
+
+iqdnseast(){
+    main
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/iqdnseast.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
+	systemctl enable dnsproxy
+    tips
+}
+
+iqdnssouth(){
+    main
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/iqdnssouth.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
+	systemctl enable dnsproxy
+    tips
 }
 
 
@@ -141,6 +170,9 @@ Fast DoH Setup Script
  3. Cloudflare (1.1.1.1)
  4. Google (8.8.8.8)
  5. DNS.SB (185.222.222.222)
+ 6. NextDNS (dns.nextdns.io)
+ 7. IQDNS (CN-East)
+ 8. IQDNS (CN-South)
 ------------------------------" && echo
 read -e -p " 请输入数字 [1-5]:" num
 case "$num" in
@@ -158,7 +190,16 @@ case "$num" in
 	;;
 	5)
 	dnssb
-	;;	
+	;;
+	6)
+	nextdns
+	;;
+	7)
+	iqdnseast
+	;;
+	8)
+	iqdnssouth
+	;;
 	*)
 	echo "请输入正确数字 [1-5]"
 	;;
