@@ -166,14 +166,14 @@ iqdnssouth(){
 
 echo && echo -e "------------------------------
 Fast DoH Setup Script
- 1. DNSPod (1.12.12.12)
- 2. Aliyun (223.5.5.5)
- 3. Cloudflare (1.1.1.1)
- 4. Google (8.8.8.8)
- 5. DNS.SB (185.222.222.222)
+ 1. DNSPod (1.12.12.12,120.53.53.53)
+ 2. Aliyun (223.5.5.5,223.6.6.6)
+ 3. Cloudflare (1.1.1.1,1.0.0.1)
+ 4. Google (8.8.8.8,8.8.4.4)
+ 5. DNS.SB (185.222.222.222,45.11.45.11)
  6. NextDNS (dns.nextdns.io)
- 7. IQDNS (CN-East)
- 8. IQDNS (CN-South)
+ 7. IQDNS (cn-east.lele233.com)
+ 8. IQDNS (cn-south.lele233.com)
 ------------------------------" && echo
 read -e -p " 请输入数字 [1-8]:" num
 case "$num" in
