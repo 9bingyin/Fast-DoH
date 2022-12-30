@@ -98,6 +98,7 @@ dnspod(){
     systemctl daemon-reload
     systemctl restart dnsproxy
 	systemctl enable dnsproxy
+    tips
 }
 
 aliyun(){
