@@ -173,8 +173,8 @@ Fast DoH Setup Script
  4. Google (8.8.8.8,8.8.4.4)
  5. DNS.SB (185.222.222.222,45.11.45.11)
  6. NextDNS (dns.nextdns.io)
- 7. IQDNS (cn-east.lele233.com)
- 8. IQDNS (cn-south.lele233.com)
+ 7. IQDNS (cn-east.iqiqzz.com)
+ 8. IQDNS (cn-south.iqiqzz.com)
 ------------------------------" && echo
 read -e -p " 请输入数字 [1-8]:" num
 case "$num" in
