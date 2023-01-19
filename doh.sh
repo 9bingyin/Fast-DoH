@@ -94,10 +94,10 @@ main(){
 
 dnspod(){
     main
-	wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/dnspod.service
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/dnspod.service
     systemctl daemon-reload
     systemctl restart dnsproxy
-	systemctl enable dnsproxy
+    systemctl enable dnsproxy
     tips
 }
 
@@ -106,8 +106,8 @@ aliyun(){
     wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/aliyun.service
     systemctl daemon-reload
     systemctl restart dnsproxy
-	systemctl enable dnsproxy
-	tips
+    systemctl enable dnsproxy
+    tips
 }
 
 cloudflare(){
@@ -115,8 +115,8 @@ cloudflare(){
     wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/cloudflare.service
     systemctl daemon-reload
     systemctl restart dnsproxy
-	systemctl enable dnsproxy
-	tips
+    systemctl enable dnsproxy
+    tips
 }
 
 google(){
@@ -124,8 +124,8 @@ google(){
     wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/google.service
     systemctl daemon-reload
     systemctl restart dnsproxy
-	systemctl enable dnsproxy
-	tips
+    systemctl enable dnsproxy
+    tips
 }
 
 dnssb(){
@@ -133,8 +133,8 @@ dnssb(){
     wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/dnssb.service
     systemctl daemon-reload
     systemctl restart dnsproxy
-	systemctl enable dnsproxy
-	tips
+    systemctl enable dnsproxy
+    tips
 }
 
 nextdns(){
@@ -142,7 +142,7 @@ nextdns(){
     wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/nextdns.service
     systemctl daemon-reload
     systemctl restart dnsproxy
-	systemctl enable dnsproxy
+    systemctl enable dnsproxy
     tips
 }
 
@@ -151,7 +151,7 @@ iqdnseast(){
     wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/iqdnseast.service
     systemctl daemon-reload
     systemctl restart dnsproxy
-	systemctl enable dnsproxy
+    systemctl enable dnsproxy
     tips
 }
 
@@ -160,7 +160,7 @@ iqdnssouth(){
     wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/iqdnssouth.service
     systemctl daemon-reload
     systemctl restart dnsproxy
-	systemctl enable dnsproxy
+    systemctl enable dnsproxy
     tips
 }
 
