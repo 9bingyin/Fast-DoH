@@ -6,9 +6,9 @@ Wants=
 Requires=
 
 [Service]
-ExecStart=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://dns.nextdns.io/dns-query -b 1.1.1.1 -b 8.8.8.8
+ExecStart=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://dns.nextdns.io/dns-query -b 8.8.4.4 -b 8.8.8.8
 ExecStop=
-ExecReload=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://dns.nextdns.io/dns-query -b 1.1.1.1 -b 8.8.8.8
+ExecReload=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://dns.nextdns.io/dns-query -b 8.8.4.4 -b 8.8.8.8
 Type=simple
 
 [Install]
