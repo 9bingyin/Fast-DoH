@@ -6,9 +6,9 @@ Wants=
 Requires=
 
 [Service]
-ExecStart=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://cn-south.iqiqzz.com/dns-query -b 119.29.29.29 -b 223.5.5.5
+ExecStart=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://cn-south.iqiqzz.com/dns-query -b 119.29.29.29 -b 119.28.28.28
 ExecStop=
-ExecReload=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://cn-south.iqiqzz.com/dns-queryy -b 119.29.29.29 -b 223.5.5.5
+ExecReload=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://cn-south.iqiqzz.com/dns-queryy -b 119.29.29.29 -b 119.28.28.28
 Type=simple
 
 [Install]

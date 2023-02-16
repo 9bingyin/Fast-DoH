@@ -18,7 +18,7 @@ bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/main/doh.s
 
 [changedns.sh](https://github.com/ernisn/changedns.sh)
 
-[DNS.SB 的教程](https://dns.sb/guide/doh/linux/)
+[DNS.SB 的教程](https://dns.sb/doh/linux)
 
 ## Tips
 
