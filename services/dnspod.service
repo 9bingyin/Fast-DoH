@@ -1,6 +1,6 @@
 [Unit]
-Description=DNSProxyService
-Documentation=DNSProxyService
+Description=DNS Proxy Service
+Documentation=https://github.com/9bingyin/Fast-DoH
 After=network.target
 Wants=
 Requires=
