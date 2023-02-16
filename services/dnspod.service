@@ -1,6 +1,6 @@
 [Unit]
-Description=DNS Proxy Service
-Documentation=DNS Proxy Service
+Description=DNSProxyService
+Documentation=DNSProxyService
 After=network.target
 Wants=
 Requires=
