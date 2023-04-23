@@ -54,7 +54,7 @@ CheckIP(){
 DoChange(){
 	mv /etc/resolv.conf /etc/resolv.conf.bak
 	echo "nameserver "$nameserver"" > /etc/resolv.conf
-	echo "nameserver "$nameserver"" > /etc/resolvconf/resolv.conf.d/head
+	echo "nameserver "$nameserver"" > /etc/resolvconf/resolv.conf.d/base
 	systemctl restart resolvconf.service
 }
 
