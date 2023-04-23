@@ -64,7 +64,7 @@ ChangeDNS(){
 	CheckSystem
 	CheckRequirement
 	echo "当前 Nameserver 如下："
-	cat /etc/resolv.conf | grep nameserver
+	cat /etc/resolv.conf | grep "nameserver "
 	read -p "请输入要设置的 Nameserver 地址: " nameserver
 	CheckIP
 	if [[ $IPcheck == "1" ]]
@@ -80,7 +80,7 @@ ChangeDNS(){
 		DoChange
 	fi
 	echo "已修改，当前 Nameserver 如下："
-	cat /etc/resolv.conf | grep nameserver
+	cat /etc/resolv.conf | grep "nameserver "
 	echo "旧 resolv.conf 已备份至 /etc/resolv.conf.bak"
 }
 
