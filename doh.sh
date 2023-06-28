@@ -164,6 +164,15 @@ iqdnssouth(){
     tips
 }
 
+moedns(){
+    main
+    wget -O /etc/systemd/system/dnsproxy.service https://raw.githubusercontent.com/9bingyin/Fast-DoH/master/services/moedns.service
+    systemctl daemon-reload
+    systemctl restart dnsproxy
+    systemctl enable dnsproxy
+    tips
+}
+
 
 echo && echo -e "------------------------------
 Fast DoH Setup Script
@@ -175,6 +184,7 @@ Fast DoH Setup Script
  6. NextDNS (dns.nextdns.io)
  7. IQDNS (cn-east.iqiqzz.com)
  8. IQDNS (cn-south.iqiqzz.com)
+ 9. MoeDNS (pdns.itxe.net)
 ------------------------------" && echo
 read -e -p " 请输入数字 [1-8]:" num
 case "$num" in
@@ -202,7 +212,10 @@ case "$num" in
 	8)
 	iqdnssouth
 	;;
+	9)
+	moedns
+	;;
 	*)
-	echo "请输入正确数字 [1-8]"
+	echo "请输入正确数字 [1-9]"
 	;;
 esac

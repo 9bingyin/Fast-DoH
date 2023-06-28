@@ -1,0 +1,15 @@
+[Unit]
+Description=DNS Proxy Service
+Documentation=https://github.com/9bingyin/Fast-DoH
+After=network.target
+Wants=
+Requires=
+
+[Service]
+ExecStart=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://pdns.itxe.net/dns-query -b 119.29.29.29 -b 119.28.28.28
+ExecStop=
+ExecReload=/usr/bin/dnsproxy -l 127.0.0.1 -p 53 -u https://pdns.itxe.net/dns-query -b 119.29.29.29 -b 119.28.28.28
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
