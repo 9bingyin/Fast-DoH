@@ -2,7 +2,7 @@
 
 突然发现 Linux 下没有一个很方便的快速设置 DoH 的方法，就写了个脚本
 
-目前支持 `DNSPod`、`Aliyun`、`Cloudflare`、`Google`、`DNS.SB`、`NextDNS`、`IQDNS`、`MoeDNS`
+目前支持 `DNSPod`、`Aliyun`、`Cloudflare`、`Google`、`DNS.SB`、`NextDNS`
 
 如有其他需要可自行修改 `/etc/systemd/system/dnsproxy.service`
 
