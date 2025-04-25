@@ -12,6 +12,12 @@
 bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/main/doh.sh")
 ```
 
+## 卸载
+
+```
+bash <(curl -sSL "https://raw.githubusercontent.com/9bingyin/Fast-DoH/main/doh.sh") --uninstall
+```
+
 ## 鸣谢
 
 [dnsproxy](https://github.com/AdguardTeam/dnsproxy)
