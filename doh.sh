@@ -40,7 +40,99 @@ declare -A SERVICE_OPTIONS=(
     [4]="google"
     [5]="dnssb"
     [6]="nextdns"
+    [7]="custom"
 )
+
+# 验证是否为 IP 地址
+is_ip() {
+    local ip=$1
+    local ip_regex="^([0-9]{1,3}\.){3}[0-9]{1,3}$"
+    if [[ $ip =~ $ip_regex ]]; then
+        local IFS='.'
+        local -a octets=($ip)
+        for octet in "${octets[@]}"; do
+            if [[ "$octet" -gt 255 ]]; then
+                return 1
+            fi
+        done
+        return 0
+    fi
+    return 1
+}
+
+# 验证是否为域名
+is_domain() {
+    local domain=$1
+    local domain_regex="^([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$"
+    [[ $domain =~ $domain_regex ]]
+    return $?
+}
+
+# 配置自定义 DNS
+configure_custom_dns() {
+    local dns_args=""
+    local bootstrap_dns=""    local primary_dns=""
+    local backup_dns=""
+    
+    echo "请输入 DoH 服务器地址，只需要填写域名或 IP，不需要填写 https:// 和 /dns-query"
+    echo "例如：dns.google 或 8.8.8.8"
+    read -e -p "请输入主 DNS 服务器地址: " primary_dns
+    if [ -z "$primary_dns" ]; then
+        echo "主 DNS 服务器地址不能为空"
+        exit 1
+    fi
+      # 询问是否配置备用 DNS
+    read -e -p "是否配置备用 DNS 服务器？[y/N]: " configure_backup
+    if [[ $configure_backup =~ ^[Yy]$ ]]; then
+        echo "请输入备用 DoH 服务器地址，格式同上"
+        read -e -p "请输入备用 DNS 服务器地址: " backup_dns
+        if [ -z "$backup_dns" ]; then
+            echo "备用 DNS 服务器地址不能为空"
+            exit 1
+        fi
+    fi
+    
+    # 检查主 DNS
+    if is_ip "$primary_dns"; then
+        dns_args="-u https://${primary_dns}/dns-query"
+    elif is_domain "$primary_dns"; then
+        read -e -p "请输入 Bootstrap DNS（用于解析 DoH 服务器域名的 DNS，如 8.8.8.8）: " bootstrap_dns
+        if [ -z "$bootstrap_dns" ] || ! is_ip "$bootstrap_dns"; then
+            echo "请输入有效的 Bootstrap DNS IP 地址"
+            exit 1
+        fi
+        dns_args="-u https://${primary_dns}/dns-query"
+    else
+        echo "无效的主 DNS 服务器地址"
+        exit 1
+    fi
+    
+    # 检查备用 DNS
+    if [ -n "$backup_dns" ]; then
+        if is_ip "$backup_dns"; then
+            dns_args="$dns_args -u https://${backup_dns}/dns-query"
+        elif is_domain "$backup_dns"; then
+            if [ -z "$bootstrap_dns" ]; then
+                read -e -p "请输入 Bootstrap DNS（用于解析 DoH 服务器域名的 DNS，如 8.8.8.8）: " bootstrap_dns
+                if [ -z "$bootstrap_dns" ] || ! is_ip "$bootstrap_dns"; then
+                    echo "请输入有效的 Bootstrap DNS IP 地址"
+                    exit 1
+                fi
+            fi
+            dns_args="$dns_args -u https://${backup_dns}/dns-query"
+        else
+            echo "无效的备用 DNS 服务器地址"
+            exit 1
+        fi
+    fi
+    
+    # 如果有 bootstrap DNS，添加到参数中
+    if [ -n "$bootstrap_dns" ]; then
+        dns_args="$dns_args -b ${bootstrap_dns}:53"
+    fi
+
+    DNS_SERVICES[custom]="$dns_args"
+}
 
 # 检查是否以 root 身份运行
 rootness() {
@@ -155,6 +247,7 @@ Fast DoH Setup Script
  4. Google (8.8.8.8,8.8.4.4)
  5. DNS.SB (185.222.222.222,45.11.45.11)
  6. NextDNS (dns.nextdns.io)
+ 7. 自定义 DNS 服务器
 ------------------------------" && echo
 }
 
@@ -167,7 +260,7 @@ show_help() {
     echo "  --help              显示此帮助信息"
     echo ""
     echo "可用的服务名:"
-    echo "  dnspod, aliyun, cloudflare, google, dnssb, nextdns"
+    echo "  dnspod, aliyun, cloudflare, google, dnssb, nextdns, custom"
     echo ""
     echo "示例:"
     echo "  $0 --install dnspod    # 快速安装 DNSPod"
@@ -185,6 +278,9 @@ case "$1" in
         fi
         if [[ -n "${DNS_SERVICES[$2]}" ]]; then
             main
+            if [ "$2" == "custom" ]; then
+                configure_custom_dns
+            fi
             install_service "$2"
             tips
         else
@@ -206,13 +302,16 @@ case "$1" in
             exit 1
         fi
         show_menu
-        read -e -p " 请输入数字 [1-6]：" num
+        read -e -p " 请输入数字 [1-7]：" num
         if [[ -n "${SERVICE_OPTIONS[$num]}" ]]; then
             main
+            if [ "${SERVICE_OPTIONS[$num]}" == "custom" ]; then
+                configure_custom_dns
+            fi
             install_service "${SERVICE_OPTIONS[$num]}"
             tips
         else
-            echo "请输入正确的数字 [1-6]"
+            echo "请输入正确的数字 [1-7]"
             exit 1
         fi
         ;;
